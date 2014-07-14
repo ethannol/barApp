@@ -1,0 +1,70 @@
+<body>
+  {{#if onLandingPage}}
+    {{> landing}}
+  {{/if}}
+
+  {{#if isbartender}}
+    {{> bartender}}
+  {{/if}}
+
+  {{#if ismanager}}
+    {{> manager}}
+  {{/if}}
+</body>
+
+<template name="landing">
+  Are you a bartender or a manager?
+  <button id="bartender">bartender</button>
+  <button id="manager">manager</button>
+</template>
+
+<template name="bartender">
+	{{>loginButtons}}
+  Hi,u are a bartender!
+</template>
+
+<template name="createDrink">
+	Add a drink to the menu!
+	{{>drinkForm}}
+</template>
+
+<template name="manager">
+	{{>loginButtons}}
+  I will take your keychain!!
+  <div>Your manager name is {{managerName}} </div><br>
+	<h2>Create a Drink</h2><br>
+	{{> createDrink}}<br>
+	<h2>View All Drinks</h2><br>
+	{{> listDrinks}}<br>
+	<h2> Create Student</h2><br>
+	{{> createStudent}}	
+	<h2>View All Students</h2><br>
+	{{> listStudents}}<br>
+</template>
+
+<template name="drinkForm">
+	Drink Name <input type="text" id="drinkName"/><br>
+	Drink Price <input type="text" id="drinkPrice"/><br>
+	Drink Category <input type="text" id="drinkCategory"/><br>
+	<button id="drinkCreate">Create!</button>
+</template>
+
+<template name="listDrinks">
+			{{#each drinks}}
+				{{name}} - {{price}} - {{category}} - <button class="removeDrink" id="{{_id}}">Remove</button><br>
+			{{/each}}
+
+</template>
+
+<template name="listStudents">
+	{{#each students}}
+		{{firstname}} - {{lastname}} - {{balance}} - {{role}}<br>
+	{{/each}}
+</template>
+
+<template name="createStudent">
+	<label>First Name</label><input type="text" id="studentFirstName"/><br>
+	<label>Last Name</label><input type="text" id="studentLastName"/><br>
+	<label>Initial balance</label><input type="text" id="studentInitBal"/><br>
+	<button id="createNewStudent">Create Student!</button>
+</template>
